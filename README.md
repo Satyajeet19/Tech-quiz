@@ -77,4 +77,7 @@ git clone https://github.com/Satyajeet19/Tech-quiz.git
 
 * 🔗 [GitHub: @Satyajeet19](https://github.com/Satyajeet19)
 * 🔗 [LinkedIn](https://www.linkedin.com/in/satyajeet-kumar-9543422b3/)
+<img width="1440" alt="Screenshot 2025-06-04 at 11 25 44 AM" src="https://github.com/user-attachments/assets/76066469-801e-43da-bc56-d982cfb541f8" />
+<img width="1440" alt="Screenshot 2025-06-04 at 11 25 49 AM" src="https://github.com/user-attachments/assets/6ae29bc7-3123-47ed-b404-5c58575871fb" />
+<img width="1440" alt="Screenshot 2025-06-04 at 11 26 21 AM" src="https://github.com/user-attachments/assets/95988e80-77cb-49b4-80f8-0873380ad634" />
 
