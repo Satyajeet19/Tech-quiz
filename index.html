@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster Pro - Ultimate Quiz Challenge</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <div class="background-animation">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="floating-shape shape-4"></div>
+        </div>
+        
+        <div class="welcome-container">
+            <div class="welcome-card glass-card">
+                <div class="welcome-header">
+                    <div class="logo-container">
+                        <div class="logo-icon">🧠</div>
+                        <h1 class="logo-text">QuizMaster Pro</h1>
+                    </div>
+                    <p class="welcome-subtitle">Test your knowledge across multiple categories</p>
+                </div>
+                
+                <div class="player-setup">
+                    <div class="input-group">
+                        <label for="player-name">Enter Your Name</label>
+                        <input type="text" id="player-name" placeholder="Your name here..." maxlength="20">
+                        <div class="input-feedback" id="name-feedback"></div>
+                    </div>
+                    
+                    <div class="difficulty-selection">
+                        <label>Choose Difficulty</label>
+                        <div class="difficulty-options">
+                            <button class="difficulty-btn active" data-difficulty="easy">
+                                <span class="difficulty-icon">😊</span>
+                                <span class="difficulty-name">Easy</span>
+                                <span class="difficulty-desc">10 questions</span>
+                            </button>
+                            <button class="difficulty-btn" data-difficulty="medium">
+                                <span class="difficulty-icon">🤔</span>
+                                <span class="difficulty-name">Medium</span>
+                                <span class="difficulty-desc">15 questions</span>
+                            </button>
+                            <button class="difficulty-btn" data-difficulty="hard">
+                                <span class="difficulty-icon">🔥</span>
+                                <span class="difficulty-name">Hard</span>
+                                <span class="difficulty-desc">20 questions</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="category-selection">
+                        <label>Select Categories</label>
+                        <div class="category-grid">
+                            <button class="category-btn active" data-category="all">
+                                <span class="category-icon">🌟</span>
+                                <span class="category-name">All Categories</span>
+                            </button>
+                            <button class="category-btn" data-category="science">
+                                <span class="category-icon">🔬</span>
+                                <span class="category-name">Science</span>
+                            </button>
+                            <button class="category-btn" data-category="history">
+                                <span class="category-icon">📚</span>
+                                <span class="category-name">History</span>
+                            </button>
+                            <button class="category-btn" data-category="geography">
+                                <span class="category-icon">🌍</span>
+                                <span class="category-name">Geography</span>
+                            </button>
+                            <button class="category-btn" data-category="sports">
+                                <span class="category-icon">⚽</span>
+                                <span class="category-name">Sports</span>
+                            </button>
+                            <button class="category-btn" data-category="entertainment">
+                                <span class="category-icon">🎬</span>
+                                <span class="category-name">Entertainment</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="welcome-actions">
+                    <button id="start-quiz-btn" class="primary-btn" disabled>
+                        <span class="btn-icon">🚀</span>
+                        Start Quiz
+                    </button>
+                    <button id="view-leaderboard-btn" class="secondary-btn">
+                        <span class="btn-icon">🏆</span>
+                        Leaderboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="screen">
+        <div class="quiz-header">
+            <div class="quiz-nav">
+                <button id="quit-quiz-btn" class="nav-btn">
+                    <span class="btn-icon">🏠</span>
+                    Quit
+                </button>
+                <div class="quiz-progress">
+                    <div class="progress-info">
+                        <span id="current-question-num">1</span> / <span id="total-questions">10</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                </div>
+                <div class="quiz-score">
+                    Score: <span id="current-score">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-content">
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-category" id="question-category">Science</div>
+                    <div class="question-difficulty" id="question-difficulty">Easy</div>
+                </div>
+                
+                <div class="timer-container">
+                    <div class="timer" id="timer">
+                        <div class="timer-circle">
+                            <svg class="timer-svg" viewBox="0 0 100 100">
+                                <circle class="timer-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="timer-progress" id="timer-progress" cx="50" cy="50" r="45"></circle>
+                            </svg>
+                            <div class="timer-text" id="timer-text">30</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card glass-card">
+                    <h2 class="question-text" id="question-text">Loading question...</h2>
+                    <div class="options-container" id="options-container">
+                        <!-- Options will be generated dynamically -->
+                    </div>
+                </div>
+
+                <div class="quiz-controls">
+                    <button id="skip-question-btn" class="control-btn">
+                        <span class="btn-icon">⏭️</span>
+                        Skip
+                    </button>
+                    <button id="hint-btn" class="control-btn">
+                        <span class="btn-icon">💡</span>
+                        Hint
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+        <div class="results-container">
+            <div class="results-card glass-card">
+                <div class="results-header">
+                    <div class="results-trophy" id="results-trophy">🏆</div>
+                    <h2 class="results-title">Quiz Complete!</h2>
+                    <div class="results-score">
+                        <div class="final-score" id="final-score">0/100</div>
+                        <div class="score-percentage" id="score-percentage">0%</div>
+                    </div>
+                    <div class="results-message" id="results-message">Great job!</div>
+                </div>
+
+                <div class="results-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="correct-count">0</div>
+                        <div class="stat-label">Correct</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="incorrect-count">0</div>
+                        <div class="stat-label">Incorrect</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="time-taken">0s</div>
+                        <div class="stat-label">Time</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="accuracy-rate">0%</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                </div>
+
+                <div class="results-breakdown">
+                    <h3>Performance by Category</h3>
+                    <div class="category-breakdown" id="category-breakdown">
+                        <!-- Category performance will be generated -->
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button id="play-again-btn" class="primary-btn">
+                        <span class="btn-icon">🔄</span>
+                        Play Again
+                    </button>
+                    <button id="share-results-btn" class="secondary-btn">
+                        <span class="btn-icon">📤</span>
+                        Share Results
+                    </button>
+                    <button id="view-answers-btn" class="secondary-btn">
+                        <span class="btn-icon">📋</span>
+                        Review Answers
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Screen -->
+    <div id="leaderboard-screen" class="screen">
+        <div class="leaderboard-container">
+            <div class="leaderboard-card glass-card">
+                <div class="leaderboard-header">
+                    <h2 class="leaderboard-title">🏆 Leaderboard</h2>
+                    <div class="leaderboard-filters">
+                        <select id="leaderboard-filter">
+                            <option value="all">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                        </select>
+                        <button id="clear-leaderboard-btn" class="danger-btn">Clear</button>
+                    </div>
+                </div>
+
+                <div class="leaderboard-list" id="leaderboard-list">
+                    <!-- Leaderboard entries will be generated -->
+                </div>
+
+                <div class="leaderboard-actions">
+                    <button id="back-to-home-btn" class="primary-btn">
+                        <span class="btn-icon">🏠</span>
+                        Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Answers Screen -->
+    <div id="review-screen" class="screen">
+        <div class="review-container">
+            <div class="review-card glass-card">
+                <div class="review-header">
+                    <h2 class="review-title">📋 Answer Review</h2>
+                    <button id="close-review-btn" class="close-btn">✕</button>
+                </div>
+
+                <div class="review-content" id="review-content">
+                    <!-- Review content will be generated -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification System -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
